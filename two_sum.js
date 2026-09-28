@@ -6,18 +6,13 @@ Input: nums = [2,7,11,15], target = 9
 Output: [0,1]
 
 var twoSum = function(nums, target) {
+    const seen = new Map(); // value -> index
 
-    const obj = new Map();
-    
-    for (i=0;i<nums.length;i++){
-        obj[nums[i]]=i
-    }
-
-    for (j=0;j<nums.length;j++){
-        rem = target - nums[j];
-        if(obj.has(rem) && obj.has(rem)!=j){
-            return[j,obj[rem]]
+    for (let i = 0; i < nums.length; i++) {
+        const rem = target - nums[i];
+        if (seen.has(rem)) {
+            return [seen.get(rem), i];
         }
+        seen.set(nums[i], i);
     }
-    
 };
